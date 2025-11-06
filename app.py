@@ -90,7 +90,7 @@ def main():
     last_name = input('Upiste prezime autora: ')
     author = Author(first_name, last_name)
     author.id = add_author(author)
-
+    # Kreiraj knjigu
     title = input('Upiste naziv knjige: ')
     description = input('Upiste kratki opis knjige: ')
     isbn = input('Upiste ISBN knjige: ')
@@ -99,6 +99,9 @@ def main():
     book.id = add_book(book)
 
     author.add_book(book)
+
+
+# prikaži 
 
 
 if __name__ == '__main__':
