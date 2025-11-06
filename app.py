@@ -32,10 +32,15 @@ sql_create_author = '''
 INSERT INTO author (first_name, last_name)
 VALUES (?, ?)
 '''
+sql_get_author_by_name = '''
+SELECT * FROM author
+WHERE first_name LIKE '?'
+'''
 sql_create_book = '''
 INSERT INTO book (title, description, isbn, price, author_id)
 VALUES (?, ?, ?, ?, ?)
 '''
+
 
 def db_init():
     try:
@@ -60,13 +65,11 @@ def add_author(author: Author) -> int:
             cursor = conn.cursor()
             cursor.execute(sql_create_author, params)
             return cursor.lastrowid
-
-
     except Exception as ex:
         print(f'Dogodila se greska {ex}.')
 
 
-def add_book(book: Book):
+def add_book(book: Book) -> int:
     if isinstance(book, Book):
         params = (book.title, book.description, book.isbn, book.price, book.author.id)
     else:
@@ -77,8 +80,6 @@ def add_book(book: Book):
             cursor = conn.cursor()
             cursor.execute(sql_create_book, params)
             return cursor.lastrowid
-
-
     except Exception as ex:
         print(f'Dogodila se greska {ex}.')
 
@@ -97,11 +98,8 @@ def main():
     book = Book(title, author, price, description, isbn)
     book.id = add_book(book)
 
-
-
     author.add_book(book)
 
-    add_book(book)
 
 if __name__ == '__main__':
     db_init()
