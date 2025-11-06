@@ -1,7 +1,7 @@
-from __future__ import annotations
 import sqlite3
 
 from constants import DB_PATH
+from models.books import Book
 
 
 sql_create_book = '''
@@ -10,8 +10,8 @@ VALUES (?, ?, ?, ?, ?)
 '''
 
 
-def add_book(book: 'Book') -> int:
-    if isinstance(book, 'Book'):
+def add_book(book: Book) -> int:
+    if isinstance(book, Book):
         params = (book.title, book.description, book.isbn, book.price, book.author.id)
     else:
         return

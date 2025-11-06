@@ -1,6 +1,7 @@
 import sqlite3
 
 from constants import DB_PATH
+from models.authors import Author
 
 
 sql_create_author = '''
@@ -13,8 +14,8 @@ WHERE first_name LIKE '?'
 '''
 
 
-def add_author(author: 'Author') -> int:
-    if isinstance(author, 'Author'):
+def add_author(author: Author) -> int:
+    if isinstance(author, Author):
         params = (author.first_name, author.last_name)
     else:
         return

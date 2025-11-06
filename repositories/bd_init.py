@@ -1,6 +1,6 @@
 import sqlite3
-from constants import DB_PATH
 
+from constants import DB_PATH
 
 
 sql_create_table_author = '''
