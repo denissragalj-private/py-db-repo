@@ -32,9 +32,9 @@ sql_create_author = '''
 INSERT INTO author (first_name, last_name)
 VALUES (?, ?)
 '''
-sql_get_author_by_name = '''
-SELECT * FROM author
-WHERE first_name LIKE '?'
+sql_create_book = '''
+INSERT INTO book (title, description, isbn, price, author_id)
+VALUES (?, ?, ?, ?, ?)
 '''
 
 def db_init():
@@ -67,7 +67,20 @@ def add_author(author: Author) -> int:
 
 
 def add_book(book: Book):
-    pass
+    if isinstance(book, Book):
+        params = (book.title, book.description, book.isbn, book.price, book.author.id)
+    else:
+        return
+
+    try:
+        with sqlite3.connect(DB_PATH) as conn:
+            cursor = conn.cursor()
+            cursor.execute(sql_create_book, params)
+            return cursor.lastrowid
+
+
+    except Exception as ex:
+        print(f'Dogodila se greska {ex}.')
 
 
 def main():
@@ -75,13 +88,17 @@ def main():
     first_name = input('Upiste ime autora: ')
     last_name = input('Upiste prezime autora: ')
     author = Author(first_name, last_name)
-    author_id = add_author(author)
+    author.id = add_author(author)
 
     title = input('Upiste naziv knjige: ')
     description = input('Upiste kratki opis knjige: ')
     isbn = input('Upiste ISBN knjige: ')
     price = float(input('Upiste cijenu knjige: '))
     book = Book(title, author, price, description, isbn)
+    book.id = add_book(book)
+
+
+
     author.add_book(book)
 
     add_book(book)
