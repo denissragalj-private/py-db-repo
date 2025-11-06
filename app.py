@@ -32,6 +32,10 @@ sql_create_author = '''
 INSERT INTO author (first_name, last_name)
 VALUES (?, ?)
 '''
+sql_get_author_by_name = '''
+SELECT * FROM author
+WHERE first_name LIKE '?'
+'''
 
 def db_init():
     try:
@@ -55,7 +59,9 @@ def add_author(author: Author):
         with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.cursor()
             cursor.execute(sql_create_author, params)
+            conn.commit()
 
+            cursor.execute(sql_get_author_by_name, (author.first_name,))
             print(cursor.fetchone())
 
 
@@ -69,11 +75,19 @@ def add_book(book: Book):
 
 def main():
     # Kreiraj autora
-    firs_name = input('Unesite ime autora: ')
-    last_name = input('Unesite prezime autora: ')
-    author = Authors(firs_name, last_name)
-    add_author(author)
+    first_name = input('Upiste ime autora: ')
+    last_name = input('Upiste prezime autora: ')
+    author = Author(first_name, last_name)
+    author = add_author(author)
 
+    title = input('Upiste naziv knjige: ')
+    description = input('Upiste kratki opis knjige: ')
+    isbn = input('Upiste ISBN knjige: ')
+    price = float(input('Upiste cijenu knjige: '))
+    book = Book(title, author, price, description, isbn)
+    author.add_book(book)
+
+    add_book(book)
 
 if __name__ == '__main__':
     db_init()

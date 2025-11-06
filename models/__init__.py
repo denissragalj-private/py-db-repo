@@ -1,3 +1,2 @@
-
-from .authors import Authors
+from .authors import Author
 from .books import Book
