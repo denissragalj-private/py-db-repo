@@ -49,7 +49,7 @@ def db_init():
         print(f'Dogodila se greska {ex}.')
 
 
-def add_author(author: Author):
+def add_author(author: Author) -> int:
     if isinstance(author, Author):
         params = (author.first_name, author.last_name)
     else:
@@ -59,10 +59,7 @@ def add_author(author: Author):
         with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.cursor()
             cursor.execute(sql_create_author, params)
-            conn.commit()
-
-            cursor.execute(sql_get_author_by_name, (author.first_name,))
-            print(cursor.fetchone())
+            return cursor.lastrowid
 
 
     except Exception as ex:
@@ -78,7 +75,7 @@ def main():
     first_name = input('Upiste ime autora: ')
     last_name = input('Upiste prezime autora: ')
     author = Author(first_name, last_name)
-    author = add_author(author)
+    author_id = add_author(author)
 
     title = input('Upiste naziv knjige: ')
     description = input('Upiste kratki opis knjige: ')
