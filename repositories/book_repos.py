@@ -64,3 +64,18 @@ def delete_book(id: int) -> str:
     # ako ne postoji vratiti poruku da nema takve knjige u bazi
     else:
         return f'Ne postoji trazena knjiga u bazi!'
+
+
+def update_book(book: Book) -> str:
+    pass  # implementacija funkcije za ažuriranje knjige u bazi podataka još nije dovršena
+    # 1. dohvatiti knjigu iz baze koja ima ID iz objekta book
+    # 2. ako postoji knjiga u bazi, ažurirati njezine podatke s podacima iz objekta book i vratiti poruku OK
+    # 3. ako ne postoji vratiti poruku "Knjiga s danim ID-om ne postoji."   
+
+def get_all_books() -> list[Book]:
+    pass  # implementacija funkcije za dohvat svih knjiga iz baze podataka još nije dovršena
+    # 1. dohvatiti sve knjige iz baze
+    # 2. za svaku knjigu dohvatiti i pripadajućeg autora iz baze
+    # 3. kreirati objekte Book i Author te ih dodati u listu koja se na kraju vraća 
+    # 4. vratiti listu objekata Book
+

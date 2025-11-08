@@ -46,3 +46,14 @@ def add_author(author: Author) -> int | None:                               # do
     except Exception as ex:                                                     # hvatanje gresaka ako se ne uspije dodati autor u bazi
         print(f"Dogodila se greska {ex}.")                                          # ispis greske  ako do nje dodje
         return None                                                                 # vracanje None na mjeto ID-a ako dodje do greske nakon čega se u bazu nece spremiti novi autor.
+
+
+def update_author(author: Author) -> str:
+# implementacija funkcije za ažuriranje autora u bazi podataka još nije dovršena
+#
+
+def delete_author(id: int) -> str:
+    pass  # implementacija funkcije za brisanje autora iz baze podataka još nije dovršena
+    # 1. dohvatiti autora iz baze koji ima dobiveni ID
+    # 2. ako postoji autor u bazi izbrisi ga i vrati poruku OK  
+    # 3. ako ne postoji vrati poruku "Autor s danim ID-om ne postoji."  
