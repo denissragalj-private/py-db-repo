@@ -49,8 +49,11 @@ def add_author(author: Author) -> int | None:                               # do
 
 
 def update_author(author: Author) -> str:
-# implementacija funkcije za ažuriranje autora u bazi podataka još nije dovršena
-#
+    # implementacija funkcije za ažuriranje autora u bazi podataka još nije dovršena
+    # 1. dohvatiti autora iz baze koji ima isti ID kao i dobiveni autor
+    # 2. ako postoji autor u bazi ažuriraj njegove podatke s podacima dobivenog autora i vrati poruku OK  
+    # 3. ako ne postoji vrati poruku "Autor s danim ID-om ne postoji."
+    pass
 
 def delete_author(id: int) -> str:
     pass  # implementacija funkcije za brisanje autora iz baze podataka još nije dovršena
