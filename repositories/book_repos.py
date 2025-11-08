@@ -42,6 +42,7 @@ def get_book(id) -> Book:
             # medu korak dohvatiti autora iz baze i napraviti objekt Author
             # kada su svi podaci spremni napraviti objekt Book i vratiit ga pomocu return
 
+
     except Exception as ex:
         print(f'Dogodila se greska {ex}.')
 
